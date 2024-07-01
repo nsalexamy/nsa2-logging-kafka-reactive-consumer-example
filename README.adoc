@@ -32,12 +32,13 @@ $ ./gradlew bootRun
 
 == Resources
 
-=== Reactive Spring Boot
+=== Spring Boot
 
-- https://www.bezkoder.com/spring-boot-r2dbc-postgresql/
-- https://medium.com/@erkndmrl/reactor-kafka-producer-consumer-with-springboot-fe14d07d5616
-- https://utronics.hashnode.dev/spring-webflux-reactive-kafka-cassandra-complete-reactive-spring-apps
-- https://gist.github.com/lbroudoux/86cf97a93dfdddfdda9f4699ba81728d
+- https://spring.io/projects/spring-kafka
+- https://docs.spring.io/spring-boot/appendix/application-properties/index.html
+- https://spring.io/guides/gs/accessing-data-r2dbc
+
+
 
 === Mapstruct
 
