@@ -1,0 +1,53 @@
+#spring.application.name=nsa2-logging-kafka-reactive-consumer-example
+server:
+  port: 38081
+spring:
+  main:
+    banner-mode: off
+
+  application:
+    name: nsa2-logging-kafka-reactive-consumer-example
+
+#  config:
+#    use-legacy-processing: true
+
+  r2dbc:
+    url: ${R2DBC_URL:r2dbc:postgresql://localhost:5432/nsa2}
+    username: ${DB_USERNAME:nsa2}
+    password: ${DB_PASSWORD:nsa2}
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+#    security:
+#      protocol: SASL_PLAINTEXT
+#      mechanism: SCRAM-SHA-256
+#    jaas:
+#      enabled: true
+#      login-module: org.apache.kafka.common.security.scram.ScramLoginModule
+#      options:
+#        username: ${KAFKA_USERNAME}
+#        password: ${KAFKA_PASSWORD}
+#      control-flag: required
+    consumer:
+      group-id: ${KAFKA_GROUP_ID:nsa2-logging-kafka-reactive-consumer-example}
+      key-deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
+      auto-offset-reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      security:
+        protocol: SASL_PLAINTEXT
+#        mechanism: SCRAM-SHA-256
+#      https://gist.github.com/lbroudoux/86cf97a93dfdddfdda9f4699ba81728d
+      properties:
+        sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}";
+        sasl.mechanism: SCRAM-SHA-256
+        spring.json:
+          trusted.packages: '*' # Allow all packages to be deserialized
+          type.headers: false
+          value:
+            default:
+              type: com.alexamy.nsa2.example.logging.kafka.reactive.consumer.model.LogPayload
+app:
+  kafka:
+    topic: ${KAFKA_TOPIC:nsa2-error-logs}
+
+

@@ -1,0 +1,44 @@
+= NSA2 Examples - Logging Kafka Reactive Consumer
+
+
+== Environment
+
+In the application, we need to have the following services running:
+
+- Kafka cluster
+- PostgreSQL server
+
+
+=== Kafka cluster
+
+
+=== PostgreSQL server
+
+== Running the application
+
+To run the application, execute the following command:
+
+[source,shell]
+----
+$ export DB_USERNAME={db-username}
+$ export DB_PASSWORD={db-password}
+$ export R2DBC_URL=r2dbc:postgresql://localhost:5432/nas2
+$ export KAFKA_BOOTSTRAP_SERVERS={kafka-bootstrap-servers}
+$ export KAFKA_USERNAME={kafka-username}
+$ export KAFKA_PASSWORD={kafka-password}
+$ export KAFKA_TOPIC=nsa2-error-logs
+$ ./gradlew bootRun
+----
+
+== Resources
+
+=== Reactive Spring Boot
+
+- https://www.bezkoder.com/spring-boot-r2dbc-postgresql/
+- https://medium.com/@erkndmrl/reactor-kafka-producer-consumer-with-springboot-fe14d07d5616
+- https://utronics.hashnode.dev/spring-webflux-reactive-kafka-cassandra-complete-reactive-spring-apps
+- https://gist.github.com/lbroudoux/86cf97a93dfdddfdda9f4699ba81728d
+
+=== Mapstruct
+
+- https://mapstruct.org/documentation/stable/reference/html/
