@@ -44,9 +44,9 @@ public class ReactiveKafkaConsumerConfig {
     // https://utronics.hashnode.dev/spring-webflux-reactive-kafka-cassandra-complete-reactive-spring-apps
     @Bean
     public ReceiverOptions<UUID, LogPayload> kafkaReceiverOptions() {
-        log.info("=====> Creating Kafka receiver options. bootstrapServers: {}, groupId: {}, kafkaTopic: {}",
-                bootstrapServers, groupId, kafkaTopic);
-        log.info("=====> Kafka properties: {}", kafkaProperties);
+//        log.info("=====> Creating Kafka receiver options. bootstrapServers: {}, groupId: {}, kafkaTopic: {}",
+//                bootstrapServers, groupId, kafkaTopic);
+//        log.info("=====> Kafka properties: {}", kafkaProperties);
 
 //        Map<String, Object> consumerProperties = kafkaProperties.buildConsumerProperties();
 //        log.info("=====> Kafka consumer properties: {}", consumerProperties);
@@ -58,7 +58,6 @@ public class ReactiveKafkaConsumerConfig {
         return basicReceiverOptions.subscription(Collections.singleton(kafkaTopic))
                 .addAssignListener(partitions -> log.info("=====> Assigned partitions: {}", partitions))
                 .addRevokeListener(partitions -> log.info("=====> Revoked partitions: {}", partitions));
-//
 
     }
 

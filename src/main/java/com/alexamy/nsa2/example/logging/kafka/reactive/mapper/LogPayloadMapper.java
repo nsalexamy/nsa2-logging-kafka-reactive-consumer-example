@@ -7,7 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface LogPayloadMapper {
-//    @Mapping(source = "logTime", target = "logTime", dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 
     @Mapping(target = "logLevel", source = "level")
     @Mapping(target = "applicationName", source = "appName")
@@ -16,7 +15,4 @@ public interface LogPayloadMapper {
     @Mapping(target = "timestamp", expression = "java(java.time.LocalDateTime.now())")
     ErrorLogNotification mapToErrorLogNotification(LogPayload payload);
 
-//    LogPayload mapToLogPayload(ErrorLogNotification errorLogNotification);
-//    ErrorLogNotification sourceToDestination(LogPayload payload);
-//    LogPayload destinationToSource(ErrorLogNotification errorLogNotification);
 }
